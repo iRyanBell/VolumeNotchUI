@@ -7,14 +7,12 @@ public class MouseInteractivity : MonoBehaviour
 	private float _sensitivity;
 	private Vector3 _mouseReference;
 	private Vector3 _mouseOffset;
-	private Vector3 _rotation;
 	private bool _isRotating;
 	public GameObject notches;
 
 	void Start()
 	{
 		_sensitivity = 0.1f;
-		_rotation = Vector3.zero;
 	}
 
 	void Update()
@@ -22,8 +20,8 @@ public class MouseInteractivity : MonoBehaviour
 
 		if (Input.GetMouseButtonDown(0))
 		{
-			_isRotating = true;
 			_mouseReference = Input.mousePosition;
+			_isRotating = true;
 		}
 
 		if (Input.GetMouseButtonUp(0))
@@ -34,15 +32,16 @@ public class MouseInteractivity : MonoBehaviour
 		if (_isRotating)
 		{
 			_mouseOffset = (Input.mousePosition - _mouseReference);
-			_rotation.z = -(_mouseOffset.x + _mouseOffset.y) * _sensitivity;
-			notches.transform.Rotate(_rotation);
-
-			_mouseReference = Input.mousePosition;
+			float rot = -(_mouseOffset.x + _mouseOffset.y) * _sensitivity;
+			rot = Mathf.Max(rot, -30);
+			rot = Mathf.Min(rot, 30);
+			Quaternion q = notches.transform.rotation;
+			notches.transform.rotation = Quaternion.Slerp(q, Quaternion.Euler(0, 0, rot), Time.time * 0.5f);
 		}
 		else
 		{
 			Quaternion r = notches.transform.rotation;
-			r.z *= 0.95f;
+			r.z *= 0.98f;
 			notches.transform.rotation = r;
 		}
 	}

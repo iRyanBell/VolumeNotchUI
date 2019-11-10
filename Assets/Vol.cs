@@ -20,6 +20,7 @@ public class Vol : MonoBehaviour
 				vol += 1;
 			}
 		}
-		volDisplay.text = "Volume: " + vol;
+
+		volDisplay.text = vol > 0 ? "Volume: " + vol : "Volume: Muted";
 	}
 }
