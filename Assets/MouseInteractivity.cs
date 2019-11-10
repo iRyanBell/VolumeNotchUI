@@ -36,12 +36,12 @@ public class MouseInteractivity : MonoBehaviour
 			rot = Mathf.Max(rot, -30);
 			rot = Mathf.Min(rot, 30);
 			Quaternion q = notches.transform.rotation;
-			notches.transform.rotation = Quaternion.Slerp(q, Quaternion.Euler(0, 0, rot), Time.time * 0.5f);
+			notches.transform.rotation = Quaternion.Slerp(q, Quaternion.Euler(0, 0, rot), Time.time * 0.25f);
 		}
 		else
 		{
 			Quaternion r = notches.transform.rotation;
-			r.z *= 0.98f;
+			r.z *= 0.9f;
 			notches.transform.rotation = r;
 		}
 	}
