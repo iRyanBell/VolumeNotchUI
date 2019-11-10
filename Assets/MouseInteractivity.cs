@@ -42,7 +42,7 @@ public class MouseInteractivity : MonoBehaviour
 		else
 		{
 			Quaternion r = notches.transform.rotation;
-			r.z *= 0.99f;
+			r.z *= 0.95f;
 			notches.transform.rotation = r;
 		}
 	}

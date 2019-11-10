@@ -10,7 +10,7 @@ public class Catch : MonoBehaviour
 		{
 			Vector3 pos = transform.position;
 			pos.y = 3;
-			pos.x = -2;
+			pos.x = -3;
 			transform.position = pos;
 		}
 	}
